@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>★외게인마트★ 지구지점 - 당신의 차원을 넘어선 쇼핑</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+          #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+          }
+          /* 날아다니는 외계인과 행성 */
+          .floating-object {
+            position: fixed;
+            font-size: 3em;
+            animation: floatAround 20s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+            filter: drop-shadow(0 0 10px currentColor);
+          }
+          @keyframes floatAround {
+            0% {
+              transform: translate(0, 0) rotate(0deg);
+              opacity: 0;
+            }
+            10% {
+              opacity: 1;
+            }
+            90% {
+              opacity: 1;
+            }
+            100% {
+              transform: translate(var(--tx), var(--ty)) rotate(360deg);
+              opacity: 0;
+            }
+          }
+            background: #000 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%23000" width="100" height="100"/><circle cx="10" cy="10" r="1" fill="%23fff" opacity="0.3"/><circle cx="50" cy="50" r="1" fill="%23fff" opacity="0.5"/><circle cx="80" cy="30" r="1" fill="%23fff" opacity="0.4"/><circle cx="30" cy="80" r="1" fill="%23fff" opacity="0.3"/></svg>');
+            font-family: 'Gulim', '굴림', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            animation: bgColorShift 5s infinite;
+        }
+
+        @keyframes bgColorShift {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .top-banner {
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000, #ff7f00, #ffff00);
+            background-size: 300% 100%;
+            animation: rainbow 2s linear infinite;
+            padding: 5px;
+            text-align: center;
+            box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        marquee {
+            background: linear-gradient(90deg, #000, #1a0033, #000, #003300, #000);
+            background-size: 200% 100%;
+            animation: marqueeBg 3s linear infinite;
+            color: #0f0;
+            padding: 10px;
+            font-size: 14px;
+            border-top: 2px dashed #ff00ff;
+            border-bottom: 2px dashed #00ffff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        @keyframes marqueeBg {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .rainbow-line {
+            height: 5px;
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            background-size: 200% 100%;
+            animation: rainbow 1.5s linear infinite;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #1a0033, #330066, #1a0033, #660033, #330066);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            border: 5px solid;
+            border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000) 1;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff, inset 0 0 30px rgba(255,0,255,0.3);
+            position: relative;
+            animation: borderGlow 1s infinite, headerShake 0.1s infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { filter: brightness(1) saturate(1); }
+            50% { filter: brightness(2) saturate(2); }
+        }
+
+        @keyframes headerShake {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(1px, -1px); }
+            50% { transform: translate(-1px, 1px); }
+            75% { transform: translate(1px, 1px); }
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glitchText 3s infinite, rainbowText 2s linear infinite;
+            letter-spacing: -2px;
+            filter: drop-shadow(0 0 10px #ff00ff) drop-shadow(0 0 20px #00ffff) drop-shadow(0 0 30px #ffff00);
+        }
+
+        @keyframes rainbowText {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        @keyframes glitchText {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-5px, 3px); }
+            94% { transform: translate(5px, -3px); }
+            96% { transform: translate(-3px, -2px); }
+            98% { transform: translate(3px, 2px); }
+        }
+
+        .alien-icon {
+            font-size: 4em;
+            animation: float 2s ease-in-out infinite, spinColor 3s linear infinite;
+            display: inline-block;
+            filter: drop-shadow(0 0 20px #00ff00);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-20px) rotate(90deg) scale(1.1); }
+            50% { transform: translateY(0) rotate(180deg) scale(1); }
+            75% { transform: translateY(-20px) rotate(270deg) scale(1.1); }
+        }
+
+        @keyframes spinColor {
+            100% { filter: drop-shadow(0 0 20px #ff00ff) hue-rotate(360deg); }
+        }
+
+        .nav-menu {
+            background: linear-gradient(45deg, #111, #220044, #111, #004422, #111);
+            background-size: 400% 400%;
+            animation: gradientShift 2s ease infinite;
+            border: 3px solid #ff00ff;
+            padding: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.5), inset 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #ff0080, #ff8000, #ffff00, #00ff00);
+            background-size: 300% 300%;
+            animation: btnGradient 2s linear infinite;
+            border: 3px outset #ffff00;
+            color: #fff;
+            padding: 10px 20px;
+            font-family: 'Gulim', '굴림', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 0 0 10px #fff;
+            transition: all 0.1s;
+            box-shadow: 0 5px 0 #660033, 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        @keyframes btnGradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        .nav-btn:hover {
+            transform: translateY(3px) scale(1.1) rotate(2deg);
+            box-shadow: 0 2px 0 #660033, 0 0 40px rgba(255, 0, 255, 1);
+            animation: btnGradient 0.5s linear infinite, shake 0.2s infinite;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #16213e, #1a1a2e);
+            background-size: 400% 400%;
+            animation: gradientShift 4s ease infinite;
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #ff00ff, #00ff00, #ffff00, #00ffff, #ff00ff) 1;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .product-card::before {
+            content: '★';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 100px;
+            opacity: 0.1;
+            animation: rotate 10s linear infinite;
+            color: #ff00ff;
+        }
+
+        .product-card::after {
+            content: '✨';
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            font-size: 80px;
+            opacity: 0.1;
+            animation: rotate 15s linear infinite reverse;
+            color: #00ffff;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .product-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.8), 0 0 100px rgba(0, 255, 255, 0.5);
+            border-color: #ffff00;
+            animation: cardShake 0.1s infinite, gradientShift 1s ease infinite;
+        }
+
+        @keyframes cardShake {
+            0%, 100% { transform: scale(1.05) rotate(2deg); }
+            25% { transform: scale(1.05) rotate(3deg); }
+            50% { transform: scale(1.05) rotate(1deg); }
+            75% { transform: scale(1.05) rotate(3deg); }
+        }
+
+        .product-icon {
+            font-size: 5em;
+            margin: 20px 0;
+            animation: bounce 1.5s infinite, iconRainbow 3s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-20px) scale(1.2) rotate(10deg); }
+            50% { transform: translateY(0) scale(1); }
+            75% { transform: translateY(-10px) scale(1.1) rotate(-10deg); }
+        }
+
+        @keyframes iconRainbow {
+            0% { filter: drop-shadow(0 0 20px #ff0000); }
+            20% { filter: drop-shadow(0 0 20px #ffff00); }
+            40% { filter: drop-shadow(0 0 20px #00ff00); }
+            60% { filter: drop-shadow(0 0 20px #00ffff); }
+            80% { filter: drop-shadow(0 0 20px #ff00ff); }
+            100% { filter: drop-shadow(0 0 20px #ff0000); }
+        }
+
+        .product-title {
+            background: linear-gradient(90deg, #ffff00, #ff00ff, #00ffff, #ffff00);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowText 2s linear infinite;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+            filter: drop-shadow(2px 2px 0 #ff00ff) drop-shadow(-2px -2px 0 #00ffff);
+        }
+
+        .product-desc {
+            color: #00ff00;
+            font-size: 0.9em;
+            margin: 10px 0;
+            line-height: 1.6;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .product-price {
+            background: linear-gradient(90deg, #ff0000, #ff6600, #ff0000);
+            background-size: 200% 100%;
+            animation: priceFlash 1s infinite;
+            color: #ffff00;
+            padding: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px dashed #ffff00;
+            margin: 15px 0;
+            text-shadow: 0 0 10px #ffff00, 2px 2px 0 #000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        @keyframes priceFlash {
+            0%, 100% { background-position: 0% 50%; transform: scale(1); }
+            50% { background-position: 200% 50%; transform: scale(1.05); }
+        }
+
+        .buy-btn {
+            background: linear-gradient(45deg, #00ff00, #00ffff, #ffff00, #00ff00);
+            background-size: 300% 300%;
+            animation: btnGradient 1.5s linear infinite;
+            border: 3px solid #ffff00;
+            color: #000;
+            padding: 12px 30px;
+            font-family: 'Gulim', '굴림', sans-serif;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff;
+            transition: all 0.2s;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), 0 5px 0 #006600;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.2) rotate(5deg);
+            animation: shake 0.3s infinite, btnGradient 0.5s linear infinite;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 1), 0 0 60px rgba(0, 255, 255, 1);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: scale(1.2) rotate(5deg); }
+            25% { transform: scale(1.2) rotate(8deg); }
+            50% { transform: scale(1.2) rotate(2deg); }
+            75% { transform: scale(1.2) rotate(7deg); }
+        }
+
+        .warning-box {
+            background: linear-gradient(45deg, #330000, #660000, #330000);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            border: 5px double #ff0000;
+            padding: 20px;
+            margin: 30px 0;
+            color: #ff6666;
+            text-align: center;
+            box-shadow: 0 0 30px #ff0000, inset 0 0 20px #ff0000;
+        }
+
+        .warning-box h2 {
+            animation: warningPulse 1s infinite, colorChange 2s infinite;
+        }
+
+        @keyframes warningPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes colorChange {
+            0% { color: #ff0000; text-shadow: 0 0 20px #ff0000; }
+            50% { color: #ffff00; text-shadow: 0 0 20px #ffff00; }
+            100% { color: #ff0000; text-shadow: 0 0 20px #ff0000; }
+        }
+
+        .visitor-counter {
+            background: linear-gradient(90deg, #000, #001100, #000);
+            background-size: 200% 100%;
+            animation: marqueeBg 2s linear infinite;
+            border: 2px solid #00ff00;
+            padding: 10px;
+            margin: 20px 0;
+            text-align: center;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .footer {
+            background: #0a0a0a;
+            border-top: 3px solid #666;
+            padding: 30px;
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .blink {
+            animation: blinker 0.5s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #1a0033, #330066, #660033, #330066);
+            background-size: 400% 400%;
+            animation: gradientShift 2s ease infinite;
+            border: 5px solid #ff00ff;
+            padding: 30px;
+            z-index: 1000;
+            max-width: 500px;
+            box-shadow: 0 0 100px rgba(255, 0, 255, 0.8), 0 0 150px rgba(0, 255, 255, 0.5);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 999;
+        }
+
+        .mystery-product {
+            background: linear-gradient(135deg, #000, #1a0033, #330066, #1a0033, #000) !important;
+            background-size: 400% 400% !important;
+            animation: gradientShift 2s ease infinite, mysteryGlow 1.5s infinite !important;
+            border: 3px solid #ff0000 !important;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), 0 0 80px rgba(255, 0, 255, 0.5), inset 0 0 40px rgba(255, 0, 0, 0.3) !important;
+        }
+
+        @keyframes mysteryGlow {
+            0%, 100% { box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), 0 0 80px rgba(255, 0, 255, 0.5); }
+            50% { box-shadow: 0 0 80px rgba(255, 0, 0, 1), 0 0 120px rgba(255, 0, 255, 1); }
+        }
+
+        .glitch-text {
+            animation: textGlitch 0.3s infinite;
+        }
+
+        @keyframes textGlitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-1px, -1px); }
+            80% { transform: translate(1px, 1px); }
+            100% { transform: translate(0); }
+        }
+    </style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+    <div class="rainbow-line"></div>
+    <div class="top-banner">
+        <marquee behavior="alternate">★★★ 우주 최저가 보장합니다! 타 행성 대비 최대 90% 할인중!!! ★★★</marquee>
+    </div>
+    <div class="rainbow-line"></div>
+
+    <marquee style="margin: 10px 0;">
+        🛸 긴급공지: 오늘밤 12시 까지 주문하면 차원이동 배송비가 무료입니다! 🌌 화성 창고에서 재고 대방출 세일중! 🚀 신규회원 가입하면 텔레포트 쿠폰을 증정합니다!
+    </marquee>
+
+    <div class="container">
+        <div class="header">
+            <div class="alien-icon">👽</div>
+            <h1 class="glitch-text">★외★게★인★마★트★</h1>
+            <p style="background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00, #00ffff); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rainbowText 2s linear infinite; font-size: 1.2em; margin-top: 10px;">
+                지구 지점 (은하계 지점번호: #A51-ZX9)
+            </p>
+            <p style="color: #ff00ff; font-size: 0.9em; margin-top: 5px; text-shadow: 0 0 10px #ff00ff;">
+                Since 2XXX년 │ 차원간 거래에서 1위 │ 믿을수있는 외계 쇼핑
+            </p>
+        </div>
+
+        <div class="nav-menu">
+            <button class="nav-btn">🏠 홈</button>
+            <button class="nav-btn">🛸 신상품</button>
+            <button class="nav-btn">🌟 베스트상품</button>
+            <button class="nav-btn">💫 특가세일</button>
+            <button class="nav-btn">🔮 고객센타</button>
+            <button class="nav-btn">📡 우주배송조회</button>
+        </div>
+
+        <div class="warning-box">
+            <h2 class="blink">⚠️ 주의사항들 ⚠️</h2>
+            <p>본 상품들은 지구 법률을 초월한 차원에서 거래됩니다.</p>
+            <p>구매후 발생하는 시공간 왜곡, 차원이동, 기억소실 등은 책임지지 않습니다.</p>
+            <p style="color: #ffff00; margin-top: 10px;">※ 환불 불가능함 (이미 다른 차원으로 배송되었음)</p>
+        </div>
+
+        <div class="visitor-counter">
+            <p>🌍 오늘 방문자들: <span id="visitor">███████</span>명 (다른차원 포함됨)</p>
+            <p>👾 현재 접속중: <span id="current">42</span>개 생명체들</p>
+        </div>
+
+        <h2 style="text-align: center; background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff); background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rainbowText 2s linear infinite; font-size: 2em; margin: 40px 0; filter: drop-shadow(0 0 10px #ff00ff);">
+            ★ 오늘의 특가상품들 ★
+        </h2>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">🧠</div>
+                <div class="product-title">인간 기억 추출기</div>
+                <div class="product-desc">
+                    원하는 기억만을 골라서 추출가능!<br>
+                    USB에 저장할수있음<br>
+                    흑역사 삭제기능 탑재되어있음<br>
+                    <span style="color: #ff6666;">※부작용: 가끔 남의기억이 들어옴</span>
+                </div>
+                <div class="product-price">
+                    ₩????,??? 원<br>
+                    (시공석 12개)
+                </div>
+                <button class="buy-btn" onclick="buy(1)">🛒 구매하기</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">⏰</div>
+                <div class="product-title">휴대용 시간정지기</div>
+                <div class="product-desc">
+                    최대 5분간 시간을 정지함<br>
+                    배터리 수명: 약30회 사용가능<br>
+                    충전기는 별도 구매해야함<br>
+                    <span style="color: #ff6666;">※주의: 본인도 같이 멈춰버림</span>
+                </div>
+                <div class="product-price">
+                    ₩??,???,??? 원<br>
+                    (시공석 340개)
+                </div>
+                <button class="buy-btn" onclick="buy(2)">🛒 구매하기</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🔮</div>
+                <div class="product-title">꿈 리모컨 (중고품)</div>
+                <div class="product-desc">
+                    꿈속에서 리모콘 조작이 가능함<br>
+                    되감기/빨리감기/일시정지있음<br>
+                    악몽 스킵기능 있음<br>
+                    <span style="color: #ff6666;">※전 주인꿈이 가끔 나타남</span>
+                </div>
+                <div class="product-price">
+                    ₩?,???,??? 원<br>
+                    (시공석 85개)
+                </div>
+                <button class="buy-btn" onclick="buy(3)">🛒 구매하기</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🎭</div>
+                <div class="product-title">얼굴 교환스티커</div>
+                <div class="product-desc">
+                    붙이면 타인과 얼굴이 교환됨!<br>
+                    1회용임 (재사용 불가능)<br>
+                    통증없음, 10초만에 교환완료<br>
+                    <span style="color: #ff6666;">※24시간후 원래대로 복구됨</span>
+                </div>
+                <div class="product-price">
+                    ₩???,??? 원<br>
+                    (시공석 28개)
+                </div>
+                <button class="buy-btn" onclick="buy(4)">🛒 구매하기</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">📱</div>
+                <div class="product-title">평행세계 전화기</div>
+                <div class="product-desc">
+                    다른차원의 자신에게 전화됨<br>
+                    로또번호 물어보기 가능할수도?<br>
+                    통화료: 1분당 영혼0.1g<br>
+                    <span style="color: #ff6666;">※역통화가 올수도있음</span>
+                </div>
+                <div class="product-price">
+                    ₩??,???,??? 원<br>
+                    (시공석 520개)
+                </div>
+                <button class="buy-btn" onclick="buy(5)">🛒 구매하기</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🍕</div>
+                <div class="product-title">무한 피자박스</div>
+                <div class="product-desc">
+                    열때마다 새로운 피자가!<br>
+                    토핑은 랜덤임 (조합보장X)<br>
+                    칼로리는 있음<br>
+                    <span style="color: #ff6666;">※가끔 우주쓰레기 나옴</span>
+                </div>
+                <div class="product-price">
+                    ₩??,??? 원<br>
+                    (시공석 6개)
+                </div>
+                <button class="buy-btn" onclick="buy(6)">🛒 구매하기</button>
+            </div>
+
+            <div class="product-card mystery-product">
+                <div class="product-icon" style="animation: bounce 0.5s infinite, iconRainbow 1s infinite;">❓</div>
+                <div class="product-title" style="font-size: 1.5em;">우리가 도움!</div>
+                <div class="product-desc" style="color: #ff6666;">
+                    무엇을 도와주는지는 모름<br>
+                    언제 도와주는지도 모름<br>
+                    왜 도와주는지도 알수없음<br>
+                    <span style="color: #ffff00; font-size: 1.1em; text-shadow: 0 0 15px #ffff00;">※우리가 당신을 지켜봄</span>
+                </div>
+                <div class="product-price" style="animation: priceFlash 0.5s infinite, shake 0.3s infinite;">
+                    ₩█,███,███ 원<br>
+                    (시공석 ???개)
+                </div>
+                <button class="buy-btn" onclick="buyMystery()" style="animation: shake 0.5s infinite, btnGradient 0.5s linear infinite;">🛒 구매하기</button>
+            </div>
+        </div>
+
+        <div class="warning-box" style="margin: 50px 0;">
+            <h3 style="color: #ffff00;">🚨 배송안내 🚨</h3>
+            <p style="margin: 15px 0; line-height: 1.8;">
+                • 차원이동 배송: 1~3일 소요됨 (시공간왜곡에 따라 변동될수있음)<br>
+                • 블랙홀 택배: 5~7일 소요됨 (물건손실률 3%있음)<br>
+                • 텔레포트 퀵배송: 즉시배송됨 (추가금 필요함)<br>
+                • 배송지 주소는 3차원좌표로 입력해주세요
+            </p>
+        </div>
+
+        <div style="text-align: center; margin: 50px 0;">
+            <h3 style="background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00, #00ffff); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rainbowText 2s linear infinite; font-size: 1.5em; margin-bottom: 20px; filter: drop-shadow(0 0 10px #00ffff);">
+                ⭐ 고객후기들 ⭐
+            </h3>
+            <div style="background: linear-gradient(45deg, #1a1a2e, #0f3460); border: 2px solid #ff00ff; padding: 20px; margin: 20px auto; max-width: 600px; text-align: left; box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);">
+                <p style="color: #ffff00;">★★★★★ 대박이에요!</p>
+                <p style="color: #fff; margin: 10px 0;">시간정지기 샀는데 진짜로 멈춰요 ㅋㅋㅋ 근데 저도 같이 멈춰서 좀...</p>
+                <p style="color: #666; font-size: 0.9em;">- 지구인A (화성에 거주중)</p>
+            </div>
+            <div style="background: linear-gradient(45deg, #1a1a2e, #0f3460); border: 2px solid #ff00ff; padding: 20px; margin: 20px auto; max-width: 600px; text-align: left; box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);">
+                <p style="color: #ffff00;">★★☆☆☆ 배송이 느림</p>
+                <p style="color: #fff; margin: 10px 0;">주문한지 3일 됐는데 아직도 안왔음. 블랙홀에 빨려들어간듯? 근데 어제 미래에서 왔다는데...</p>
+                <p style="color: #666; font-size: 0.9em;">- 외계인ZX-42</p>
+            </div>
+            <div style="background: linear-gradient(45deg, #1a1a2e, #0f3460); border: 2px solid #ff00ff; padding: 20px; margin: 20px auto; max-width: 600px; text-align: left; box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);">
+                <p style="color: #ffff00;">★★★★★ 우리가도움 구매했어요</p>
+                <p style="color: #fff; margin: 10px 0;">뭔지는 모르겠는데 계속 저를 지켜보고있는것같아요. 밤에 창문밖에서 눈이 보여요. 도움이 되는건지는 모르겠지만...</p>
+                <p style="color: #666; font-size: 0.9em;">- ████████ (위치불명)</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>★외게인마트★ 지구지점</p>
+            <p>사업자등록번호: [차원을초월하여 존재하지않음]</p>
+            <p>대표자: ███████ (본명 발음이 불가능함)</p>
+            <p>고객센타: 텔레파시로 연락주세요</p>
+            <p style="margin-top: 15px; color: #999;">
+                본 사이트는 지구법률의 적용을 받지않습니다.<br>
+                모든거래는 은하계간 상거래법을 따릅니다.
+            </p>
+            <p style="margin-top: 10px; color: #666; font-size: 0.8em;">
+                Copyright © 2XXX 외게인마트. All dimensions reserved.
+            </p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="popup" id="popup">
+        <h2 style="background: linear-gradient(90deg, #ffff00, #ff00ff, #00ffff, #ffff00); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rainbowText 2s linear infinite; text-align: center; margin-bottom: 20px; filter: drop-shadow(0 0 10px #ff00ff);">🛸 구매확인 🛸</h2>
+        <p style="color: #00ffff; text-align: center; line-height: 1.8;">
+            상품을 구매하시겠습니까?<br><br>
+            <span style="color: #ff6666; font-size: 0.9em;">
+                ※ 구매즉시 당신의 DNA정보가 은하계 데이터베이스에 등록됩니다<br>
+                ※ 환불 불가능 (이미 다른차원으로 배송되었습니다)<br>
+                ※ 부작용 발생시 가까운 블랙홀로 문의바랍니다
+            </span>
+        </p>
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="buy-btn" onclick="confirmBuy()" style="margin: 0 10px;">구매완료</button>
+            <button class="nav-btn" onclick="closePopup()" style="margin: 0 10px;">취소함</button>
+        </div>
+    </div>
+
+    <div class="popup" id="mysteryPopup" style="display: none;">
+        <h2 style="color: #ff0000; text-align: center; margin-bottom: 20px; animation: colorChange 1s infinite;">⚠️ 경고 ⚠️</h2>
+        <p style="color: #ffff00; text-align: center; line-height: 1.8; animation: textGlitch 0.3s infinite;">
+            이 상품은 특별합니다<br><br>
+            <span style="color: #ff6666; font-size: 0.9em;">
+                우리는 항상 당신을 봅니다<br>
+                우리는 항상 당신을 돕습니다<br>
+                우리는 항상 당신곁에 있습니다<br><br>
+                <span style="color: #fff; font-size: 1.2em;">당신은 원하십니까?</span>
+            </span>
+        </p>
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="buy-btn" onclick="confirmMystery()" style="margin: 0 10px; animation: shake 0.5s infinite;">네, 원합니다</button>
+            <button class="nav-btn" onclick="closeMystery()" style="margin: 0 10px;">아니요...</button>
+        </div>
+    </div>
+
+    <script>
+        let visitorCount = Math.floor(Math.random() * 9000000) + 1000000;
+        let currentUsers = Math.floor(Math.random() * 100) + 20;
+        
+        setInterval(() => {
+            visitorCount += Math.floor(Math.random() * 50);
+            currentUsers = Math.floor(Math.random() * 100) + 20;
+            document.getElementById('visitor').textContent = visitorCount.toLocaleString();
+            document.getElementById('current').textContent = currentUsers;
+        }, 3000);
+        
+        document.getElementById('visitor').textContent = visitorCount.toLocaleString();
+        document.getElementById('current').textContent = currentUsers;
+        
+        function buy(productNum) {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+        
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+        
+        function buyMystery() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('mysteryPopup').style.display = 'block';
+        }
+        
+        function closeMystery() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('mysteryPopup').style.display = 'none';
+        }
+        
+        function confirmBuy() {
+            alert('🛸 구매완료!\n\n차원이동 배송이 시작되었습니다.\n배송예정일: ████년 ██월 ██일\n\n※ 시공간왜곡으로 인해 어제 도착했을수도 있습니다.');
+            closePopup();
+        }
+        
+        function confirmMystery() {
+            document.body.style.background = '#ff0000';
+            setTimeout(() => {
+                document.body.style.background = '#000';
+            }, 100);
+            
+            setTimeout(() => {
+                alert('👁️ 구매완료...\n\n우리가 당신을 찾았습니다.\n우리가 당신을 도울것입니다.\n우리가 당신과 함께합니다.\n\n언제나.\n어디서나.\n영원히.\n\n...감사합니다.');
+                closeMystery();
+            }, 200);
+        }
+        
+        // 랜덤 글리치효과
+        setInterval(() => {
+            if (Math.random() > 0.9) {
+                document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg) saturate(' + (Math.random() * 3 + 1) + ')';
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                }, 100);
+            }
+        }, 1000);
+        
+        // 콘솔메시지
+        console.log('%c👽 당신은 감시받고있습니다', 'color: #0f0; font-size: 20px;');
+        console.log('%c우리는 당신의 구매패턴을 분석중입니다...', 'color: #ff00ff; font-size: 16px;');
+        console.log('%c우리가 도움!', 'color: #ff0000; font-size: 30px; font-weight: bold;');
+        // 별 그리기
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        for (let i = 0; i < 300; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2,
+                speed: Math.random() * 0.5 + 0.1,
+                opacity: Math.random()
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+        
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.y = 0;
+                    star.x = Math.random() * canvas.width;
+                }
+            });
+            requestAnimationFrame(drawStars);
+        }
+        drawStars();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // 날아다니는 외계인과 행성
+        const floatingEmojis = ['👽', '🛸', '🪐', '🌍', '🌙', '☄️', '🚀', '⭐'];
+
+        function createFloatingObject() {
+            const obj = document.createElement('div');
+            obj.className = 'floating-object';
+            obj.textContent = floatingEmojis[Math.floor(Math.random() * floatingEmojis.length)];
+            obj.style.left = Math.random() * 100 + '%';
+            obj.style.top = Math.random() * 100 + '%';
+            obj.style.setProperty('--tx', (Math.random() - 0.5) * 2000 + 'px');
+            obj.style.setProperty('--ty', (Math.random() - 0.5) * 2000 + 'px');
+            obj.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            obj.style.color = ['#ff00ff', '#00ffff', '#ffff00', '#00ff00'][Math.floor(Math.random() * 4)];
+    
+            document.body.appendChild(obj);
+    
+            setTimeout(() => {
+                obj.remove();
+            }, 20000);
+        }
+
+        setInterval(createFloatingObject, 2000);
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createFloatingObject, i * 400);
+        }
+    </script>
+</body>
+</html>
