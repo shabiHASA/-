@@ -11,7 +11,8 @@
             box-sizing: border-box;
         }
 
-        #stars {
+        body {
+          #stars {
             position: fixed;
             top: 0;
             left: 0;
@@ -19,35 +20,32 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
-        }
-        
-        .floating-object {
+          }
+          /* 날아다니는 외계인과 행성 */
+          .floating-object {
             position: fixed;
             font-size: 3em;
             animation: floatAround 20s linear infinite;
             z-index: 1;
             pointer-events: none;
             filter: drop-shadow(0 0 10px currentColor);
-        }
-        
-        @keyframes floatAround {
+          }
+          @keyframes floatAround {
             0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 0;
+              transform: translate(0, 0) rotate(0deg);
+              opacity: 0;
             }
             10% {
-                opacity: 1;
+              opacity: 1;
             }
             90% {
-                opacity: 1;
+              opacity: 1;
             }
             100% {
-                transform: translate(var(--tx), var(--ty)) rotate(360deg);
-                opacity: 0;
+              transform: translate(var(--tx), var(--ty)) rotate(360deg);
+              opacity: 0;
             }
-        }
-        
-        body {
+          }
             background: #000 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%23000" width="100" height="100"/><circle cx="10" cy="10" r="1" fill="%23fff" opacity="0.3"/><circle cx="50" cy="50" r="1" fill="%23fff" opacity="0.5"/><circle cx="80" cy="30" r="1" fill="%23fff" opacity="0.4"/><circle cx="30" cy="80" r="1" fill="%23fff" opacity="0.3"/></svg>');
             font-family: 'Gulim', '굴림', sans-serif;
             color: #fff;
@@ -433,16 +431,16 @@
 
         .popup {
             display: none;
-            position: fixed !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: linear-gradient(45deg, #1a0033, #330066, #660033, #330066);
             background-size: 400% 400%;
             animation: gradientShift 2s ease infinite;
             border: 5px solid #ff00ff;
             padding: 30px;
-            z-index: 1000 !important;
+            z-index: 1000;
             max-width: 500px;
             width: 90%; /* 추가 */
             max-height: 90vh; /* 추가 */
@@ -642,6 +640,7 @@
                 <button class="buy-btn" onclick="buyMystery()" style="animation: shake 0.5s infinite, btnGradient 0.5s linear infinite;">🛒 구매하기</button>
             </div>
         </div>
+
         <div class="warning-box" style="margin: 50px 0;">
             <h3 style="color: #ffff00;">🚨 배송안내 🚨</h3>
             <p style="margin: 15px 0; line-height: 1.8;">
@@ -692,6 +691,7 @@
             </p>
         </div>
     </div>
+
     <div class="overlay" id="overlay" onclick="closePopup()"></div>
     <div class="popup" id="popup">
         <h2 style="background: linear-gradient(90deg, #ffff00, #ff00ff, #00ffff, #ffff00); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rainbowText 2s linear infinite; text-align: center; margin-bottom: 20px; filter: drop-shadow(0 0 10px #ff00ff);">🛸 구매확인 🛸</h2>
@@ -725,6 +725,7 @@
             <button class="nav-btn" onclick="closeMystery()" style="margin: 0 10px;">아니요...</button>
         </div>
     </div>
+
     <script>
         let visitorCount = Math.floor(Math.random() * 9000000) + 1000000;
         let currentUsers = Math.floor(Math.random() * 100) + 20;
