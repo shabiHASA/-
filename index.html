@@ -11,8 +11,7 @@
             box-sizing: border-box;
         }
 
-        body {
-          #stars {
+        #stars {
             position: fixed;
             top: 0;
             left: 0;
@@ -20,32 +19,35 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
-          }
-          /* 날아다니는 외계인과 행성 */
-          .floating-object {
+        }
+        
+        .floating-object {
             position: fixed;
             font-size: 3em;
             animation: floatAround 20s linear infinite;
             z-index: 1;
             pointer-events: none;
             filter: drop-shadow(0 0 10px currentColor);
-          }
-          @keyframes floatAround {
+        }
+        
+        @keyframes floatAround {
             0% {
-              transform: translate(0, 0) rotate(0deg);
-              opacity: 0;
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
             }
             10% {
-              opacity: 1;
+                opacity: 1;
             }
             90% {
-              opacity: 1;
+                opacity: 1;
             }
             100% {
-              transform: translate(var(--tx), var(--ty)) rotate(360deg);
-              opacity: 0;
+                transform: translate(var(--tx), var(--ty)) rotate(360deg);
+                opacity: 0;
             }
-          }
+        }
+        
+        body {
             background: #000 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%23000" width="100" height="100"/><circle cx="10" cy="10" r="1" fill="%23fff" opacity="0.3"/><circle cx="50" cy="50" r="1" fill="%23fff" opacity="0.5"/><circle cx="80" cy="30" r="1" fill="%23fff" opacity="0.4"/><circle cx="30" cy="80" r="1" fill="%23fff" opacity="0.3"/></svg>');
             font-family: 'Gulim', '굴림', sans-serif;
             color: #fff;
