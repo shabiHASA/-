@@ -634,6 +634,7 @@
                 <div class="product-icon" style="animation: bounce 0.5s infinite, iconRainbow 1s infinite;">❓</div>
                 <div class="product-title" style="font-size: 1.5em;">우리가 도움!</div>
                 <div class="product-desc" style="color: #ff6666;">
+                    이 상품 은 특별!<br>
                     언제 든지 가능<br>
                     우리의 직접 도움!<br>
                     <span style="color: #ffff00; font-size: 1.1em; text-shadow: 0 0 15px #ffff00;">※우리가 도움 을 주다</span>
@@ -694,39 +695,6 @@
             </p>
         </div>
     </div>
-    <div class="overlay" id="overlay" onclick="closePopup()"></div>
-    <div class="popup" id="popup">
-        <h2 style="background: linear-gradient(90deg, #ffff00, #ff00ff, #00ffff, #ffff00); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rainbowText 2s linear infinite; text-align: center; margin-bottom: 20px; filter: drop-shadow(0 0 10px #ff00ff);">🛸 구매확인 🛸</h2>
-        <p style="color: #00ffff; text-align: center; line-height: 1.8;">
-            상품을 구매?<br><br>
-            <span style="color: #ff6666; font-size: 0.9em;">
-                ※ 당신의 DNA정보 가 데이터 기반에 등록되다<br>
-                ※ 환불이 불가 (이미 배송!)<br>
-                ※ 부작용 시 가까운 블랙홀로 문의!
-            </span>
-        </p>
-        <div style="text-align: center; margin-top: 30px;">
-            <button class="buy-btn" onclick="confirmBuy()" style="margin: 0 10px;">구매완료</button>
-            <button class="nav-btn" onclick="closePopup()" style="margin: 0 10px;">취소함</button>
-        </div>
-    </div>
-
-    <div class="popup" id="mysteryPopup" style="display: none;">
-        <h2 style="color: #ff0000; text-align: center; margin-bottom: 20px; animation: colorChange 1s infinite;">⚠️ 경고 ⚠️</h2>
-        <p style="color: #ffff00; text-align: center; line-height: 1.8; animation: textGlitch 0.3s infinite;">
-            이 상품 은 특별!<br><br>
-            <span style="color: #ff6666; font-size: 0.9em;">
-                우리는 당신을 봅니다<br>
-                우리는 당신을 돕다<br>
-                우리는 문제를 해결!<br><br>
-                <span style="color: #fff; font-size: 1.2em;">당신은 원합니까?</span>
-            </span>
-        </p>
-        <div style="text-align: center; margin-top: 30px;">
-            <button class="buy-btn" onclick="confirmMystery()" style="margin: 0 10px; animation: shake 0.5s infinite;">그러다!</button>
-            <button class="nav-btn" onclick="closeMystery()" style="margin: 0 10px;">아니요...</button>
-        </div>
-    </div>
     <script>
         let visitorCount = Math.floor(Math.random() * 9000000) + 1000000;
         let currentUsers = Math.floor(Math.random() * 100) + 20;
@@ -742,31 +710,11 @@
         document.getElementById('current').textContent = currentUsers;
         
         function buy(productNum) {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('popup').style.display = 'block';
-        }
-        
-        function closePopup() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('popup').style.display = 'none';
-        }
-        
-        function buyMystery() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('mysteryPopup').style.display = 'block';
-        }
-        
-        function closeMystery() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('mysteryPopup').style.display = 'none';
-        }
-        
-        function confirmBuy() {
             alert('🛸 구매완료!\n\n배송이 시작!\n배송예정일: ████년 ██월 ██일\n\n※ 블랙홀 배송 시 어제 도착할 수 있다.\n\n※ 우리는 고객 의 DNA정보를 수집!');
             closePopup();
         }
         
-        function confirmMystery() {
+        function buyMystery() {
             document.body.style.background = '#ff0000';
             setTimeout(() => {
                 document.body.style.background = '#000';
